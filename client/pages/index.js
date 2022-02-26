@@ -1,74 +1,46 @@
 import { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import Layout from "../components/Layout";
+import provider from "../provider";
 import purchaseFactory from "../purchaseFactory";
-
+import { Card, Icon, Button } from "semantic-ui-react";
+import CreatePurchaseButtons from "../components/CreatePurchaseButtons";
 
 const PurchaseFactoryIndex = (props) => {
 
-    const [currentAccount, setCurrentAccount] = useState('')
-
-    
-
-
-  const checkIfWalletIsConnected = async () => {
-    const { ethereum } = window;
-    if (ethereum) {
-      console.log("Got the ethereum obejct: ", ethereum);
-    } else {
-      console.log("No Wallet found. Connect Wallet");
-    }
-
-    const accounts = await ethereum.request({ method: "eth_accounts" });
-
-    if (accounts.length !== 0) {
-      console.log("Found authorized Account: ", accounts[0]);
-      setCurrentAccount(accounts[0]);
-    } else {
-      console.log("No authorized account found");
-    }
-  };
-
-  useEffect(() => {
-    // checkIfWalletIsConnected();
-    purchaseFactory.getBalance("ethers.eth").then(name => console.log(">>>>>>>>name of contract: ", name));
-
-  }, []);
-
-  const connectWallet = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (!ethereum) {
-        console.log("Metamask not detected");
-        return;
-      }
-      let chainId = await ethereum.request({ method: "eth_chainId" });
-      console.log("Connected to chain:" + chainId);
-
-      const rinkebyChainId = "0x4";
-
-      if (chainId !== rinkebyChainId) {
-        alert("You are not connected to the Rinkeby Testnet!");
-        return;
-      }
-
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-
-      console.log("Found account", accounts[0]);
-      setCurrentAccount(accounts[0]);
-    } catch (error) {
-      console.log("Error connecting to metamask", error);
-    }
-  };
+    const renderCards = () => {
+        return props.deployedPurchases.map((address) => {
+          return (
+            <Card
+              style={{
+                overflowWrap: "break-word",
+              }}
+            >
+              <Card.Content header={address} />
+              <Card.Content meta={address} />
+              <Card.Content description="description" />
+              <Card.Content extra>
+                <Icon name="user" />4 Friends
+              </Card.Content>
+            </Card>
+          );
+        });
+      };
+  
 
   return (
-    <>
-      {" "}
-      <h1>Index</h1> <button onClick={connectWallet}>LogIn</button>
-    </>
+    <Layout>
+        <CreatePurchaseButtons deployedPurchases = {props.deployedPurchases} />
+
+      <Card.Group>{renderCards()}</Card.Group>
+    </Layout>
   );
 };
+
+export async function getServerSideProps() {
+  const deployedPurchases = await purchaseFactory.getDeployedPurchases();
+  return {
+    props: { deployedPurchases },
+  };
+}
 
 export default PurchaseFactoryIndex;

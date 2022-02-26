@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
-import provider from "./provider";
+import provider from './provider';
+
 
 
 const address = "0x092d6000c53cAbBb88c5b6D678E4d47760aBceb9";
@@ -110,6 +111,7 @@ const abi = [
   },
 ];
 
+// const purchaseFactory = new web3.eth.Contract(abi, address);
 const purchaseFactory = new ethers.Contract(address, abi, provider);
 
 export default purchaseFactory;
