@@ -25,10 +25,10 @@ const Header = (props) => {
       <Link href="/">
         <a className="item">Home</a>
       </Link>
-      <Link href="/">
+      <Link href="/purchase/new/web2">
         <a className="item">Create Web2 Purchase</a>
       </Link>
-      <Link href="/">
+      <Link href="/purchase/new/web3">
         <a className="item">Create Web3 Purchase</a>
       </Link>
 
