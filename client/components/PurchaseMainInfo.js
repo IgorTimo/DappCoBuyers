@@ -1,4 +1,4 @@
-import { Card } from "semantic-ui-react";
+import { Card, CardMeta } from "semantic-ui-react";
 
 const PurchaseMainInfo = (props) => {
   const { isFinished, title, desc } = props.info;

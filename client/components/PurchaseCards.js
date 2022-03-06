@@ -12,6 +12,11 @@ const PurchaseCards = (props) => {
     totalItemsCount,
   } = props.info;
 
+  console.log(
+    "parseInt(totalItemsCount) / parseInt(minItems)",
+    parseInt(totalItemsCount) / parseInt(minItems)
+  );
+
   return (
     <Card.Group
       style={{
@@ -54,6 +59,12 @@ const PurchaseCards = (props) => {
       </Card>
       <Card>
         <Card.Content
+          style={{
+            backgroundColor:
+              parseInt(totalItemsCount) / parseInt(minItems) >= 1
+                ? "lightGreen"
+                : "white",
+          }}
           header={`${totalItemsCount} / ${minItems}`}
           meta="Now / Target"
           description="It's number of items that already been bought by another co-buyers to minimum number of items to make this purchase successful. More info you can reed in description"

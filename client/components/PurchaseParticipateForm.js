@@ -36,7 +36,6 @@ const PurchaseParticipateForm = (props) => {
     } finally {
       setIsLoading(false);
     }
-    router.replace(`/purchase/show?address=${address}`);
   };
 
   return (
@@ -59,7 +58,14 @@ const PurchaseParticipateForm = (props) => {
         I'm in!
       </Button>
       <h3>Total in ETH: {items ? items * priceForOneItem : 0}</h3>
-      <Message error header="Ooops!" content={errorMessage} />
+      <Message
+        style={{
+          overflowWrap: "break-word",
+        }}
+        error
+        header="Ooops!"
+        content={errorMessage}
+      />
       <Message
         style={{
           overflowWrap: "break-word",

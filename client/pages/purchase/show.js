@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
 import { Grid } from "semantic-ui-react";
 import Layout from "../../components/Layout";
+import MakePurchaseAndRefundButtons from "../../components/MakePurchaseAndRefundButtons";
 import PurchaseCards from "../../components/PurchaseCards";
 import PurchaseMainInfo from "../../components/PurchaseMainInfo";
 import PurchaseParticipateForm from "../../components/PurchaseParticipateForm";
@@ -17,6 +17,7 @@ const ShowPurchase = (props) => {
         </Grid.Column>
         <Grid.Column width={6}>
           <PurchaseParticipateForm info={props.info} />
+          <MakePurchaseAndRefundButtons info={props.info}/>
         </Grid.Column>
       </Grid>
     </Layout>
