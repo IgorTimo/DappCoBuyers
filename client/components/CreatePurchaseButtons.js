@@ -6,11 +6,11 @@ const CreatePurchaseButtons = (props) => {
   return (
     <>
       <h2 style={{ display: "inline-block" }}>Create yout own purchase with</h2>
-      <Button.Group style={{ marginLeft: "20px", marginRight: "20px" }} size="large">
-      <Link href="purchase/new/web3"><a>
+      <Button.Group style={{ marginLeft: "20px", marginRight: "20px", marginBottom: "20px" }} size="large">
+      <Link href="/purchase/new/web3"><a>
         <Button content="Web3" icon="add circle" primary /></a></Link>
         <Button.Or />
-        <Link href="purchase/new/web2"><a>
+        <Link href="/purchase/new/web2"><a>
         <Button
           content="Web2"
           icon="add circle"

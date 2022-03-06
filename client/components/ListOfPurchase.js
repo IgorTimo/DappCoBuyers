@@ -15,6 +15,7 @@ const ListOfPurchase = (props) => {
           }}
         >
           <Card
+          fluid
             link
             style={{
               overflowWrap: "break-word",
