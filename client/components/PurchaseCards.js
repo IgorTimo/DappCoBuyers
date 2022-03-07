@@ -10,12 +10,9 @@ const PurchaseCards = (props) => {
     minItems,
     endOfFundraising,
     totalItemsCount,
+    hash,
+    supplierInfo
   } = props.info;
-
-  console.log(
-    "parseInt(totalItemsCount) / parseInt(minItems)",
-    parseInt(totalItemsCount) / parseInt(minItems)
-  );
 
   return (
     <Card.Group
@@ -50,6 +47,26 @@ const PurchaseCards = (props) => {
           />
         </Card>
       </Link>
+      {hash && 
+      <>
+      <Link passHref href={`https://${supplierInfo}`}>
+        <Card target="_blank">
+          <Card.Content
+            header="Supplier Info"
+            meta={supplierInfo}
+            description="This is the link where you can reed more about supplier of this contract"
+          />
+        </Card>
+      </Link>
+      <Card>
+        <Card.Content
+          header={hash}
+          meta="Hash by sha256"
+          description="It's hash of concatenated title, description and link to supplier. You can check this hash by yourself to be shure that all info is correct!"
+        />
+      </Card>
+      </>
+      }
       <Card>
         <Card.Content
           header={`${priceForOneItem} ETH`}

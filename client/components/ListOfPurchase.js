@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import Link from "next/link";
 import { Card, Icon } from "semantic-ui-react";
 import purchaseFactory from "../purchaseFactory";
@@ -15,7 +16,7 @@ const ListOfPurchase = (props) => {
           }}
         >
           <Card
-          fluid
+            fluid
             link
             style={{
               overflowWrap: "break-word",

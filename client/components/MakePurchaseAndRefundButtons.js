@@ -51,8 +51,6 @@ const MakePurchaseAndRefundButtons = (props) => {
   };
 
   const isRefundEnabled = () => {
-    console.log("is true :", !isFinished);
-
     if (
       parseInt(totalItemsCount) < parseInt(minItems) &&
       !isFinished &&
