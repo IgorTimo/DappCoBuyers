@@ -14,6 +14,8 @@ import provider from "../../../provider";
 import purchaseFactory from "../../../purchaseFactory";
 import fromDateToSeconds from "../../../utils/convert/fromDateToSeconds";
 import getPurchaseByHash from "../../../utils/web2/getPurchaseByHash";
+import createNewPurchaseHash from "../../../utils/web2/createNewPurchaseHash";
+import createNewWeb2Purchase from "../../../utils/web3/createNewWeb2Purchase";
 
 const NewWeb2Purchase = (props) => {
   const [supplier, setSupplier] = useState();
@@ -50,28 +52,27 @@ const NewWeb2Purchase = (props) => {
       dropDownValue
     );
 
-    getPurchaseByHash("test_hash");
+    setIsLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
 
-    // setIsLoading(true);
-    // setErrorMessage("");
-    // setSuccessMessage("");
-
-    // try {
-    //   const response = await createNewWeb2Purchase(
-    //     supplier,
-    //     priceForOneItem,
-    //     minItems,
-    //     fundraisingTimeInSeconds,
-    //     hash,
-
-    //   );
-    //   setIsLoading(false);
-    //   setSuccessMessage(`Hash of transaction: ${response.hash}`);
-    // } catch (error) {
-    //   setErrorMessage(error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    try {
+      const hash = await createNewPurchaseHash(title, desc, supplierInfo);
+      const response = await createNewWeb2Purchase(
+        supplier,
+        priceForOneItem,
+        minItems,
+        fundraisingTimeInSeconds,
+        hash
+      );
+      setIsLoading(false);
+      console.log("response: ", response);
+      setSuccessMessage(`Hash of transaction: ${response.hash}`);
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -1,3 +1,5 @@
+import PORT from "./PORT";
+
 const createNewPurchaseHash = async (title, desc, supplierInfo) => {
     const requestOptions = {
         method: "POST",
@@ -11,7 +13,9 @@ const createNewPurchaseHash = async (title, desc, supplierInfo) => {
         },
       };
     
-     const response = fetch(PORT + "/purchases", requestOptions);
+     const response = await fetch(PORT + "purchases", requestOptions);
      const data = await response.json();
-     console.log(data.hash);
+     return data.hash;
 }
+
+export default createNewPurchaseHash;
