@@ -13,3 +13,6 @@ ethereum/artifacts
 #client
 client/node_modules
 client/.next
+
+#server
+server/node_modules
