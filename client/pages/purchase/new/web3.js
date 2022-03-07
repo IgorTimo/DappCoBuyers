@@ -13,6 +13,7 @@ import Layout from "../../../components/Layout";
 import provider from "../../../provider";
 import purchaseFactory from "../../../purchaseFactory";
 import fromDateToSeconds from "../../../utils/convert/fromDateToSeconds";
+import createNewWeb3Purchase from "../../../utils/web3/createNewWeb3Purchase";
 
 const NewWeb3Purchase = (props) => {
   const [supplier, setSupplier] = useState();
@@ -53,18 +54,14 @@ const NewWeb3Purchase = (props) => {
     setSuccessMessage("");
 
     try {
-      const signer = await provider.getSigner();
-      console.log("signer: ", signer);
-      const purchaseFactoryWithSigner = purchaseFactory.connect(signer);
-      const response = await purchaseFactoryWithSigner.createStoragePurchase(
+      const response = await createNewWeb3Purchase(
         supplier,
-        ethers.utils.parseEther(priceForOneItem),
+        priceForOneItem,
         minItems,
         fundraisingTimeInSeconds,
         title,
         desc
       );
-      console.log("response: ", response);
       setIsLoading(false);
       setSuccessMessage(`Hash of transaction: ${response.hash}`)
     } catch (error) {
