@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Button, Form, Input, Header, Message } from "semantic-ui-react";
 import provider from "../provider";
 import Purchase from "../Purchase";
+import addPurchaseToCobuyer from "../utils/web2/addPurchaseToCobuyer";
+import getCoBuyerPurchases from "../utils/web2/getCoBuyerPurchases";
+import participateInPurchase from "../utils/web3/participateInPurchase";
 
 const PurchaseParticipateForm = (props) => {
   const { address, priceForOneItem } = props.info;
@@ -21,14 +24,8 @@ const PurchaseParticipateForm = (props) => {
     setSuccessMessage("");
 
     try {
-      const purchase = Purchase(address);
-      const signer = await provider.getSigner();
-      const purchaseWithSigner = purchase.connect(signer);
-      const totalAmount = items * priceForOneItem;
-      const response = await purchaseWithSigner.participate(items, {
-        value: ethers.utils.parseEther(totalAmount.toString()),
-      });
-      console.log("response: ", response);
+      const response = await participateInPurchase(address, items, priceForOneItem);
+      addPurchaseToCobuyer(address)
       setIsLoading(false);
       setSuccessMessage(`Hash of transaction: ${response.hash}`);
     } catch (error) {
