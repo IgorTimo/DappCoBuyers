@@ -4,7 +4,7 @@ export class CoBuyerController {
   static getCoBuyerByAddress = async (req, res) => {
     const address = req.params.address;
     const coBuyer = CoBuyer.findOne({ address: address }).then((coBuyer) =>
-      res.send({ coBuyer: coBuyer })
+      res.send({ listOfPurchases: coBuyer.listOfPurchases })
     );
   };
 
