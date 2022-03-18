@@ -20,10 +20,6 @@ const createNewWeb3Purchase = async (
     title,
     desc
   );
-  console.log("Response: ", response);
-  const from = "0x092d6000c53cAbBb88c5b6D678E4d47760aBceb9";
-  const nonce = response.nonce;
-  console.log("Address of contract: ", ethers.utils.getContractAddress({from, nonce}));
   return response;
 };
 

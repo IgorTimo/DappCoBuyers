@@ -72,7 +72,6 @@ const MakePurchaseAndRefundButtons = (props) => {
       const signer = await provider.getSigner();
       const purchaseWithSigner = purchase.connect(signer);
       const response = await makeSomeAction(purchaseWithSigner);
-      console.log("response: ", response);
       setSuccessMessage(`Hash of transaction: ${response.hash}`);
     } catch (error) {
       setErrorMessage(error.message);

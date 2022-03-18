@@ -66,7 +66,6 @@ const NewWeb2Purchase = (props) => {
         hash
       );
       setIsLoading(false);
-      console.log("response: ", response);
       setSuccessMessage(`Hash of transaction: ${response.hash}`);
     } catch (error) {
       setErrorMessage(error.message);

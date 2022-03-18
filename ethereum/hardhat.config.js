@@ -20,8 +20,8 @@ module.exports = {
   solidity: "0.8.4",
   networks: {
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/68f34e13cf39404f9dd2fecdb128205e", 
-      accounts: ["c79f9579e4d26ab41f571849b715502a401b38d1521a791745e30266dfe77323"] 
+      url: "INFURA LINK", 
+      accounts: ["PRIVATE KEY"] 
      },
    }
 };

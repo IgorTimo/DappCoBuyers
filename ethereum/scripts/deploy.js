@@ -13,7 +13,7 @@ async function main() {
   console.log("PurchaseFactory address: ", purchaseFactory.address);
 
   //npx hardhat run scripts/deploy.js --network rinkeby
-  // Contract address: 0x092d6000c53cAbBb88c5b6D678E4d47760aBceb9
+  // Contract address: 
 
   
 
